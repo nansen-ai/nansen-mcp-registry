@@ -7,7 +7,7 @@
   "remotes": [
     {
       "type": "streamable-http",
-      "url": "https://mcp.nansen.ai/ra/mcp",
+      "url": "https://mcp.nansen.ai/api/mcp",
       "headers": [
         {
           "name": "NANSEN-API-KEY",
