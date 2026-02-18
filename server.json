@@ -1,0 +1,21 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.nansen-ai/nansen-mcp",
+  "title": "Nansen",
+  "description": "Blockchain analytics API for AI agents. Access Smart Money signals, wallet profiling, token analytics, exchange netflows, and DeFi portfolio data across 20+ chains. Powered by 400M+ labeled wallets.",
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.nansen.ai/ra/mcp",
+      "headers": [
+        {
+          "name": "NANSEN-API-KEY",
+          "description": "Your Nansen API key. Get one at https://app.nansen.ai/api",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
