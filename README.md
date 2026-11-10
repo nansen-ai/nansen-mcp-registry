@@ -1,38 +1,28 @@
 # Nansen MCP Registry
 
-This repository contains the registry metadata for Nansen's Model Context Protocol (MCP) server.
+This repository holds Nansen's entry in the [Official MCP Registry](https://registry.modelcontextprotocol.io/v0/servers?search=io.github.nansen-ai/nansen-mcp). Glama, PulseMCP and other MCP directories import from that registry, so a change here reaches them too.
 
-## MCP Server Details
+## Servers
 
-- **Server URL**: `https://mcp.nansen.ai/ra/mcp`
-- **Transport**: Streamable HTTP
-- **Authentication**: API Key header (`NANSEN-API-KEY`)
-- **Documentation**: https://docs.nansen.ai/mcp/connecting
+| Server | URL | Sign-in |
+|---|---|---|
+| Full tool catalog | `https://mcp.nansen.ai/ra/mcp` | `NANSEN-API-KEY` header |
+| Curated tools | `https://mcp.nansen.ai/ra/connector-curated/mcp` | Nansen account through OAuth |
 
-## Registry Submission
+Setup guide: https://docs.nansen.ai/mcp/overview
 
-The `server.json` file in this repository is used to register Nansen MCP server with:
-- Official MCP Registry (registry.modelcontextprotocol.io)
-- PulseMCP (pulsemcp.com)
-- GitHub MCP (github.com/mcp)
-- Other MCP aggregators
+## Updating the registry entry
 
-## Getting Started
+1. Edit `server.json` and raise `version`. The registry never lets a version be published twice.
+2. Open a pull request. CI validates the file with `mcp-publisher validate`.
+3. Merge to `main`. The `MCP Registry` workflow publishes the new version through GitHub Actions OIDC. No personal token or org Owner login is involved.
 
-To use Nansen MCP:
+To deprecate an old version, add it to `deprecated` in `registry-status.json` with a short message and merge. The workflow skips versions that are already deprecated.
 
-1. Get your API key at https://app.nansen.ai/api
-2. Configure your MCP client with:
-   - Server URL: `https://mcp.nansen.ai/ra/mcp`
-   - Header: `NANSEN-API-KEY: your_api_key`
+Keep chain counts and tool counts out of `server.json`. They change often, and the docs are the source of truth for both.
 
-## Features
+## Checking the live entry
 
-Access blockchain analytics for AI agents:
-- Smart Money signals
-- Wallet profiling
-- Token analytics
-- Exchange netflows  
-- DeFi portfolio data
-- 20+ chain coverage
-- 400M+ labeled wallets
+```bash
+curl -s 'https://registry.modelcontextprotocol.io/v0/servers?search=io.github.nansen-ai/nansen-mcp' | jq '.servers[] | {version: .server.version, meta: ._meta}'
+```

@@ -1,9 +1,10 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.hurcanNansen/nansen-mcp",
+  "name": "io.github.nansen-ai/nansen-mcp",
   "title": "Nansen",
-  "description": "Blockchain analytics API for AI agents. Smart Money signals, wallet profiling, token analytics.",
-  "version": "1.0.4",
+  "description": "Onchain analytics for AI agents: Smart Money, labeled wallets, token flows, PnL, perps, Polymarket.",
+  "version": "1.1.0",
+  "websiteUrl": "https://docs.nansen.ai/mcp/overview",
   "remotes": [
     {
       "type": "streamable-http",
@@ -11,11 +12,15 @@
       "headers": [
         {
           "name": "NANSEN-API-KEY",
-          "description": "Your Nansen API key. Get one at https://app.nansen.ai/api",
+          "description": "Your Nansen API key. Get one at https://app.nansen.ai/auth/agent-setup",
           "isRequired": true,
           "isSecret": true
         }
       ]
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.nansen.ai/ra/connector-curated/mcp"
     }
   ]
 }
